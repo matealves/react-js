@@ -16,15 +16,15 @@ Entrar na pasta de determinada aula e testar localmente.
 
 ### - Acessar pasta:
 
-#### `$ cd nomeDaPasta`
+`$ cd nomeDaPasta`
 
 ### - Instalação:
 
-#### `$ npm install`
+`$ npm install`
 
 ### - Rodar no server local:
 
-#### `$ npm run dev`
+`$ npm run dev`
 
 
 <br>
