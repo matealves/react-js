@@ -16,7 +16,7 @@ Entrar na pasta de determinada aula e testar localmente.
 
 ### - Acessar pasta:
 
-`$ cd nomeDaPasta`
+`$ cd nome-da-pasta`
 
 ### - Instalação:
 
