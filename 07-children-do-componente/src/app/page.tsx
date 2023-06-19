@@ -1,20 +1,17 @@
-import { Person } from "@/components/Person";
+import { Card } from "@/components/Card";
 
 const Page = () => {
+  // Para passar mais de um componente como children
+  // Tem a mesma regra do 'Fragment' ou 'div' no return
   return (
-    <>
-      <Person
-        name="Mark Zuckerberg"
-        avatar="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Mark_Zuckerberg_F8_2019_Keynote_%2832830578717%29_%28cropped%29.jpg/330px-Mark_Zuckerberg_F8_2019_Keynote_%2832830578717%29_%28cropped%29.jpg"
-        roles={["CEO do Facebook", "CEO do WhatsApp", "CEO do Instagram"]}
-      />
-      <Person
-        name="Elon Musk"
-        avatar="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Elon_Musk_Royal_Society_%28crop2%29.jpg/452px-Elon_Musk_Royal_Society_%28crop2%29.jpg"
-        roles={["CEO da Tesla", "CEO da SpaceX", "CEO do Twitter"]}
-      />
-      <Person name="Teste" roles={["CEO da Coca-COla"]} />
-    </>
+    <div>
+      <Card>
+        <>
+          <h3 className="text-3xl font-bold italic">"Frase de Efeito"</h3>
+          <p className="text-right text-sm">Autor desconhecido</p>
+        </>
+      </Card>
+    </div>
   );
 };
 
