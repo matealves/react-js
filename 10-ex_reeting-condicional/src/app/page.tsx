@@ -1,4 +1,5 @@
 import { Greeting } from "@/components/Greeting";
+import { Greeting2 } from "@/components/Greeting2";
 
 const Page = () => {
   return (
