@@ -6,9 +6,9 @@ type Props = {
 
 export const StudentTable = ({ students }: Props) => {
   return (
-    <table className="w-full border border-gray-600 rounded-md overflow-hidden">
+    <table className="w-full rounded-md overflow-hidden">
       <thead>
-        <tr className="text-left border-b border-gray-600 bg-gray-800">
+        <tr className="text-left bg-blue-500">
           <th className="p-3">Name</th>
           <th className="p-3">Status</th>
           <th className="p-3">Grade 1</th>
@@ -18,7 +18,7 @@ export const StudentTable = ({ students }: Props) => {
       </thead>
       <tbody>
         {students.map((item) => (
-          <tr key={item.id} className="text-gray-800 bg-gray-300 border-b border-gray-600">
+          <tr key={item.id} className="text-gray-800 odd:bg-white even:bg-slate-100 hover:bg-sky-300 cursor-pointer">
             <td className="p-3 flex items-center">
               <img src={item.avatar} alt={item.name} className="w-10 h-10 rounded-full mr-3"/>
               <div>
