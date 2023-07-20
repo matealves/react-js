@@ -12,7 +12,8 @@ export const Count = () => {
 
   return (
     <div className="block w-screen text-center">
-      <p className="pb-2 mx-3">{count}</p>
+      <hr />
+      <p className="pb-2 m-3">{count}</p>
       <button
         onClick={handleClickButtonMinus}
         className="bg-blue-500 p-3 rounded-md"

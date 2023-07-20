@@ -8,16 +8,14 @@ export const ShowToken = () => {
   };
 
   return (
-    <div className="block mb-5 w-screen text-center">
+    <div className="block mb-5 w-screen text-center h-20">
       <button
         onClick={handleClickButton}
         className="bg-gray-500 p-3 rounded-md"
       >
         {showToken ? "Ocultar token" : "Exibir token"}
       </button>
-      <div className="p-3 mt-1">
-        {showToken ? "y@cKIU%N&I6kp#Vj9" : "#################"}
-      </div>
+      {showToken && <div className="p-3 mt-1">y@cKIU%N&I6kp#Vj9</div>}
     </div>
   );
 };
