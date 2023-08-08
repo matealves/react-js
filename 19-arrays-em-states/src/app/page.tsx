@@ -11,24 +11,32 @@ const Page = () => {
   ]);
 
   const handleAddButon = () => {
+    if (!itemInput.trim()) {
+      alert("Campo vazio");
+      return;
+    }
     setList([...list, { label: itemInput, checked: false }]);
     setItemInput("");
   };
 
-  return (
-    <div className="w-screen h-screen flex flex-col justify-center items-center text-2xl">
-      <h1 className="text-3xl mt-5">Lista de Tarefas</h1>
+  const deleteItem = (key: number) => {
+    setList(list.filter((item, index) => index !== key));
+  };
 
-      <div className="flex w-full max-w-lg my-3 p-4 rounded-md bg-gray-700 border-2 border-gray-700">
+  return (
+    <div className="w-screen h-screen flex flex-col justify-center items-center text-xl">
+      <h1 className="text-2xl mt-5">Lista de Tarefas</h1>
+
+      <div className="flex w-full max-w-md my-3 p-4 rounded-md bg-gray-700 border-2 border-gray-700">
         <input
           type="text"
           placeholder="Digite uma tarefa"
-          className="border border-black p-3 text-2xl text-black rounded-md mr-3"
+          className="border border-black p-3 text-1xl text-black rounded-md mr-3"
           value={itemInput}
           onChange={(e) => setItemInput(e.target.value)}
         />
         <button
-          className=" rounded bg-gray-400 text-sm px-7"
+          className=" rounded bg-green-500 text-sm px-5"
           onClick={handleAddButon}
         >
           Adicionar
@@ -36,10 +44,15 @@ const Page = () => {
       </div>
       <p className="my-4">{list.length} itens na lista</p>
       <ul className="w-full max-w-lg list-disc pl-5">
-        {list.map((item) => (
-          <li>
-            {item.label} -{" "}
-            <button className="hover:underline">[Deletar]</button>
+        {list.map((item, index) => (
+          <li key={index}>
+            {item.label}{" "}
+            <button
+              onClick={() => deleteItem(index)}
+              className="hover:underline text-red-500 text-sm"
+            >
+              ❌
+            </button>
           </li>
         ))}
       </ul>
