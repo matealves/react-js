@@ -23,6 +23,13 @@ const Page = () => {
     setList(list.filter((item, index) => index !== key));
   };
 
+  const toggleItem = (index: number) => {
+    let newList = [...list];
+    newList[index].checked = !newList[index].checked;
+
+    setList(newList);
+  };
+
   return (
     <div className="w-screen h-screen flex flex-col justify-center items-center text-xl">
       <h1 className="text-2xl mt-5">Lista de Tarefas</h1>
@@ -46,6 +53,12 @@ const Page = () => {
       <ul className="w-full max-w-lg list-disc pl-5">
         {list.map((item, index) => (
           <li key={index}>
+            <input
+              onChange={() => toggleItem(index)}
+              type="checkbox"
+              checked={item.checked}
+              className="w-4 h-4 mr-2"
+            />
             {item.label}{" "}
             <button
               onClick={() => deleteItem(index)}
