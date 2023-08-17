@@ -11,4 +11,14 @@ export const questions: Question[] = [
     options: ["Front-end", "Full-stack", "Back-end", "Todas as alternativas"],
     answer: 2,
   },
+  {
+    question: "let x = 15; if(x > 15) { true } else { false }?",
+    options: [
+      "true",
+      "false",
+      "Nenhuma das alternativas",
+      "Todas as alternativas",
+    ],
+    answer: 1,
+  },
 ];
