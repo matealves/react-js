@@ -6,4 +6,9 @@ export const questions: Question[] = [
     options: ["Software", "Linguagem de Programação", "Hardware", "Satélite"],
     answer: 1,
   },
+  {
+    question: "NodeJs é utilizado em que Stack?",
+    options: ["Front-end", "Full-stack", "Back-end", "Todas as alternativas"],
+    answer: 2,
+  },
 ];

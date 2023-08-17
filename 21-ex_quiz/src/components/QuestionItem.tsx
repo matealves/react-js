@@ -13,7 +13,10 @@ export const QuestionItem = ({ question, count, onAnswer }: Props) => {
   const checkQuesntion = (key: number) => {
     if (selecterAnswer === null) {
       setSelecterAnswer(key);
-      onAnswer(key);
+      setTimeout(() => {
+        onAnswer(key);
+        setSelecterAnswer(null);
+      }, 1500);
     }
   };
 
