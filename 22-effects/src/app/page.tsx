@@ -8,7 +8,7 @@ const Page = () => {
   /*
 1. Definição da função que vai rodar.
 2. Definição de QUANDO vai rodar.
-3. Definição do que vai fazer quando o componente sumir/unload.
+3. Definição do que vai fazer quando o componente sumir/unload/CleanUp.
 
 2º parâmetro = []: passar states a serem monitoradas para rodar o effect
 Ou array vazio para rodar apenas ao iniciar a página
