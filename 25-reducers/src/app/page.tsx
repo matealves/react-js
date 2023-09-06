@@ -8,11 +8,11 @@ const Page = () => {
   const [addField, setAddField] = useState("");
 
   const handleAddButton = () => {
-    if (addField === "") return false;
+    if (addField.trim() === "") return false;
 
     dispatch({
       type: "add",
-      payload: { text: addField },
+      payload: { text: addField.trim() },
     });
 
     setAddField("");
@@ -21,6 +21,37 @@ const Page = () => {
   const handleDoneCheckbox = (id: number) => {
     dispatch({
       type: "toggleDone",
+      payload: { id },
+    });
+  };
+
+  const handleEdit = (id: number) => {
+    const item = list.find((task) => task.id === id);
+    if (!item) return false;
+
+    const newText = window.prompt("Editar Tarefa", item.text);
+    if (!newText || newText?.trim() === "") return false;
+
+    dispatch({
+      type: "editText",
+      payload: {
+        id,
+        newText,
+      },
+    });
+  };
+
+  const handleRemove = (id: number) => {
+    const item = list.find((task) => task.id === id);
+    if (
+      !window.confirm(
+        `Tem certeza que deseja excluir a tarefa '${item?.text}'?`
+      )
+    )
+      return false;
+
+    dispatch({
+      type: "remove",
       payload: { id },
     });
   };
@@ -36,7 +67,7 @@ const Page = () => {
           className="flex-1 p-3 border border-white bg-transparent rounded-md outline-none"
           placeholder="Digite uma tarefa"
           value={addField}
-          onChange={(e) => setAddField(e.target.value.trim())}
+          onChange={(e) => setAddField(e.target.value)}
         />
         <button
           onClick={handleAddButton}
@@ -49,17 +80,23 @@ const Page = () => {
       <ul className="max-w-2xl mx-auto">
         {list.map((item) => (
           <li className="flex p-3 my-3 border-b border-gray-700" key={item.id}>
-            {/* <input
+            <input
               type="checkbox"
-              className="w-4 h-4 mr-4"
+              className="w-4 h-4 mr-2 mt-0.5"
               checked={item.done}
-              onClick={() => handleDoneCheckbox(id)}
-            /> */}
+              onChange={() => handleDoneCheckbox(item.id)}
+            />
             <p className="flex-1 text-md">{item.text}</p>
-            <button className="mx-4 hover:opacity-50 transition ease-in-out delay-50">
+            <button
+              className="mx-4 hover:opacity-100 opacity-50 transition ease-in-out delay-50"
+              onClick={() => handleEdit(item.id)}
+            >
               ✏️
             </button>
-            <button className="mr-2 hover:opacity-50 transition ease-in-out delay-50">
+            <button
+              className="mr-2 opacity-50 hover:opacity-100 transition ease-in-out delay-50"
+              onClick={() => handleRemove(item.id)}
+            >
               ❌
             </button>
           </li>
