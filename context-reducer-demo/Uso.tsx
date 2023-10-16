@@ -2,6 +2,7 @@ import { PostContext } from "@/contexts/PostContext";
 import { useContext } from "react";
 
 export const PostList = () => {
+  // Usando context 'PostContext' importado no projeto
   const postCtx = useContext(PostContext);
 
   const handleRemoveButton = (id: number) => {

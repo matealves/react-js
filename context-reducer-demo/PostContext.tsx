@@ -12,18 +12,9 @@ export const PostContext = createContext<PostContextType | null>(null);
 
 export const PostProvider = ({ children }: { children: ReactNode }) => {
   const [posts, dispatch] = useReducer(postReducer, []);
-  // const [posts, setPosts] = useState<Post[]>([]);
 
   const addPost = (title: string, body: string) => {
     dispatch({ type: "add", payload: { title, body } });
-    // setPosts([
-    //   ...posts,
-    //   {
-    //     id: posts.length,
-    //     title,
-    //     body,
-    //   },
-    // ]);
   };
 
   const removePost = (id: number) => {
@@ -31,7 +22,7 @@ export const PostProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <PostContext.Provider value={{ posts, addPost,  removePost}}>
+    <PostContext.Provider value={{ posts, addPost, removePost }}>
       {children}
     </PostContext.Provider>
   );
