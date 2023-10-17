@@ -1,6 +1,12 @@
 import { postReducer } from "@/reducers/postReducer";
 import { Post } from "@/types/Post";
-import { ReactNode, createContext, useReducer, useState } from "react";
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useReducer,
+  useState,
+} from "react";
 
 type PostContextType = {
   posts: Post[];
@@ -31,8 +37,10 @@ export const PostProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <PostContext.Provider value={{ posts, addPost,  removePost}}>
+    <PostContext.Provider value={{ posts, addPost, removePost }}>
       {children}
     </PostContext.Provider>
   );
 };
+
+export const usePosts = () => useContext(PostContext);

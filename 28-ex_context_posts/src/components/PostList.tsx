@@ -1,8 +1,10 @@
-import { PostContext } from "@/contexts/PostContext";
+import { PostContext, usePosts } from "@/contexts/PostContext";
 import { useContext } from "react";
 
 export const PostList = () => {
-  const postCtx = useContext(PostContext);
+  // importando hook próprio como um atalho para useContext
+  const postCtx = usePosts();
+  // const postCtx = useContext(PostContext);
 
   const handleRemoveButton = (id: number) => {
     postCtx?.removePost(id);
