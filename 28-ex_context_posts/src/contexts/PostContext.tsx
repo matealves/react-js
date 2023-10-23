@@ -4,9 +4,12 @@ import {
   ReactNode,
   createContext,
   useContext,
+  useEffect,
   useReducer,
   useState,
 } from "react";
+
+const STORAGE_KEY = "postContent";
 
 type PostContextType = {
   posts: Post[];
@@ -17,8 +20,15 @@ type PostContextType = {
 export const PostContext = createContext<PostContextType | null>(null);
 
 export const PostProvider = ({ children }: { children: ReactNode }) => {
-  const [posts, dispatch] = useReducer(postReducer, []);
   // const [posts, setPosts] = useState<Post[]>([]);
+  const [posts, dispatch] = useReducer(
+    postReducer,
+    JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]")
+  );
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(posts));
+  }, [posts]);
 
   const addPost = (title: string, body: string) => {
     dispatch({ type: "add", payload: { title, body } });
