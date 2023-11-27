@@ -10,7 +10,7 @@ type addAction = {
 
 type ChatActions = addAction;
 
-export const chatRedcuer = (state: Message[], action: ChatActions) => {
+export const chatReducer = (state: Message[], action: ChatActions) => {
   switch (action.type) {
     case "add":
       return [
