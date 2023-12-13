@@ -9,9 +9,14 @@ const Page = () => {
   const [loading, setLoading] = useState(true);
 
   const getUsers = async () => {
-    const reponse = await fetch(url);
-    const data = await reponse.json();
-    setUsers(data);
+    try {
+      const reponse = await fetch(url);
+      const data = await reponse.json();
+      setUsers(data);
+      setLoading(false);
+    } catch (err) {
+      console.error("ERRO", err);
+    }
     setLoading(false);
   };
 
