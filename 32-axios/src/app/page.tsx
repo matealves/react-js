@@ -1,7 +1,8 @@
 "use client";
 
+import { api } from "@/utils/api";
 import axios from "axios";
-import { headers } from "next/dist/client/components/headers";
+import { useRef } from "react";
 
 const Page = () => {
   const handleGetPosts = async () => {
@@ -17,15 +18,28 @@ const Page = () => {
   };
 
   const handleSendPosts = async () => {
-    const response = await axios.post(
-      "https://jsonplaceholder.typicode.com/posts",
-      {
-        userId: 98,
-        title: "Título",
-        body: "Conteúdo teste...",
-      }
-    );
+    const response = await api.post("/posts", {
+      userId: 98,
+      title: "Título",
+      body: "Conteúdo teste...",
+    });
     console.log("response", response.data);
+  };
+
+  const fileInput = useRef<HTMLInputElement>(null);
+
+  const handleSendFile = async () => {
+    if (fileInput.current?.files && fileInput.current.files.length > 0) {
+      
+      const file = fileInput.current.files[0];
+      const data = new FormData();
+      data.append("name", file.name);
+      data.append("file", file);
+      
+      console.log('file', file);
+      const response = await api.post("/posts", data);
+      console.log("response", response.data);
+    }
   };
 
   return (
@@ -43,6 +57,13 @@ const Page = () => {
         className="bg-blue-500 p-2 rounded-md text-sm"
       >
         Inserir Posts
+      </button>
+      <input type="file" ref={fileInput} className="mt-5" />
+      <button
+        onClick={handleSendFile}
+        className="bg-pink-500 p-2 rounded-md text-sm"
+      >
+        Enviar
       </button>
     </div>
   );
