@@ -20,3 +20,8 @@ export const getUsers = async (): Promise<User[]> => {
   const result = await req.get("/users");
   return result.data;
 };
+
+export const getUser = async (id: number): Promise<User> => {
+  const result = await req.get(`/users/${id}`);
+  return result.data;
+};
