@@ -1,21 +1,20 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
-import { getPosts } from "@/utils/api";
+import { usePost, usePosts } from "@/utils/queries";
 
 const Page = () => {
-  const query = useQuery({
-    queryKey: ["posts"],
-    queryFn: getPosts,
-  });
+  const posts = usePosts();
+  const postItem = usePost(10);
 
   return (
     <div className="container mx-auto flex flex-col gap-3 items-center">
-      {query.isLoading && "Loading..."}
+      <h1>Posts:</h1>
 
-      {query.data && (
+      {posts.isLoading && "Loading..."}
+
+      {posts.data && (
         <ul>
-          {query.data.map((item) => (
+          {posts.data.map((item) => (
             <li key={item.id}>{item.title}</li>
           ))}
         </ul>
