@@ -4,7 +4,7 @@ import { usePost, usePosts } from "@/utils/queries";
 
 const Page = () => {
   const posts = usePosts();
-  const postItem = usePost(10);
+  // const postItem = usePost(10);
 
   return (
     <div className="container mx-auto flex flex-col gap-3 items-center">
