@@ -1,12 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { getPost, getPosts, getUser, getUsers } from "./api";
 
-export const usePosts = (enabled?: boolean) => {
+export const usePosts = (limit: number, start: number) => {
   return useQuery({
-    queryKey: ["posts"],
-    queryFn: getPosts,
-    staleTime: 5 * (60 * 1000), // 5 minutos
-    enabled, // executar ao iniciar?
+    queryKey: ["posts", { limit, start }],
+    queryFn: () => getPosts(limit, start),
+    // placeholderData: keepPreviousData,
+    // staleTime: 5 * (60 * 1000), // 5 minutos
   });
 };
 

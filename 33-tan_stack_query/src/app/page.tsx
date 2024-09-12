@@ -1,31 +1,36 @@
 "use client";
 
-import { usePost, usePosts } from "@/utils/queries";
+import { usePosts } from "@/utils/queries";
 import { useState } from "react";
 
 const Page = () => {
-  const [canLoadPosts, setCanLoadPosts] = useState(false);
-  const posts = usePosts(canLoadPosts);
-  // const postItem = usePost(10);
+  const limit = 3;
+  const [page, setPage] = useState(0);
 
-  const handleLoadPostsButton = () => {
-    setCanLoadPosts(true);
+  const posts = usePosts(limit, page * limit);
+
+  const handlePrevButton = () => {
+    setPage(page === 0 ? 0 : page - 1);
+  };
+
+  const handleNextButton = () => {
+    setPage(page + 1);
   };
 
   return (
     <div className="container mx-auto my-8 flex flex-col gap-3 items-center">
       <h1 className="text-xl font-bold">Feed</h1>
 
-      {posts.isLoading && "Loading..."}
+      <span className="text-xs text-gray-400 font-light mb-0">
+        Página: {page + 1}
+      </span>
 
-      {!canLoadPosts && (
-        <button
-          className="bg-blue-600 text-sm font-semibold rounded-md p-2 mt-4"
-          onClick={handleLoadPostsButton}
-        >
-          Carregar posts
-        </button>
-      )}
+      <div className="flex gap-4 text-xs text-orange-300 font-bold">
+        <button onClick={handlePrevButton}>{"← Prev"}</button>
+        <button onClick={handleNextButton}>{"Next →"}</button>
+      </div>
+
+      {posts.isLoading && "Loading..."}
 
       {posts.data && (
         <ul>
