@@ -1,6 +1,11 @@
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import {
+  keepPreviousData,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
 import { getPost, getPosts, getUser, getUsers } from "./api";
 import { postsInitialData } from "@/data/postsInitialData";
+// import { queryClient } from "./queryClient";
 
 export const usePosts = (limit: number, start: number) => {
   return useQuery({
@@ -22,6 +27,15 @@ export const usePost = (id: number) => {
 
 export const useUsers = () => {
   return useQuery({
+    queryKey: ["users"],
+    queryFn: getUsers,
+  });
+};
+
+export const useUsersPrefetch = async () => {
+  const queryClient = useQueryClient();
+
+  await queryClient.prefetchQuery({
     queryKey: ["users"],
     queryFn: getUsers,
   });

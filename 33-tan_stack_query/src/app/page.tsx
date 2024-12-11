@@ -1,6 +1,6 @@
 "use client";
 
-import { usePosts } from "@/utils/queries";
+import { usePosts, useUsersPrefetch } from "@/utils/queries";
 import { useState } from "react";
 
 const Page = () => {
@@ -8,6 +8,8 @@ const Page = () => {
   const [page, setPage] = useState(0);
 
   const posts = usePosts(limit, page * limit);
+
+  useUsersPrefetch();
 
   const handlePrevButton = () => {
     setPage(page === 0 ? 0 : page - 1);
