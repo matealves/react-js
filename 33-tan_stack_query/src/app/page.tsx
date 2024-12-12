@@ -4,7 +4,7 @@ import { invalidatePosts, usePosts, useUsersPrefetch } from "@/utils/queries";
 import { useState } from "react";
 
 const Page = () => {
-  const limit = 10;
+  const limit = 3;
   const [page, setPage] = useState(0);
 
   const posts = usePosts(limit, page * limit);
@@ -27,15 +27,6 @@ const Page = () => {
 
   return (
     <div className="container mx-auto my-8 flex flex-col gap-3 items-center text-sm">
-      <div>
-        <button
-          onClick={handleInsertNewPost}
-          className="bg-blue-500 p-2 font-bold w-full"
-        >
-          Invalidar Query
-        </button>
-      </div>
-
       <h1 className="text-xl font-bold">Feed</h1>
 
       {posts.isLoading && "Loading..."}
@@ -70,6 +61,15 @@ const Page = () => {
             <button onClick={handlePrevButton}>{"← Prev"}</button>
             <button onClick={handleNextButton}>{"Next →"}</button>
           </div>
+
+          {/* <div>
+            <button
+              onClick={handleInsertNewPost}
+              className="bg-blue-500 p-2 font-bold w-full"
+            >
+              Invalidar Query
+            </button>
+          </div> */}
         </>
       )}
     </div>
