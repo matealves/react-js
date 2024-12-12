@@ -51,6 +51,6 @@ export const useUser = (id: number) => {
 export const invalidatePosts = () => {
   queryClient.invalidateQueries({
     queryKey: ["posts"],
-    exact: true,
+    // exact: true,
   });
 };
