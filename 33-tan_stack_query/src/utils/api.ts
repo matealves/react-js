@@ -28,3 +28,8 @@ export const getUser = async (id: number): Promise<User> => {
   const result = await req.get(`/users/${id}`);
   return result.data;
 };
+
+export const addPost = async (data: Omit<Post, "id">) => {
+  const result = await req.post(`/posts`, data);
+  return result.data;
+};
