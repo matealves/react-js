@@ -30,6 +30,18 @@ const Page = () => {
   // Mutation
   const addMutation = useMutation({
     mutationFn: addPost,
+    onMutate: (data) => {
+      console.log("Dados da Mutation: ", data);
+    },
+    onError: (error, data, context) => {
+      alert(`Erro ao adicionar novo post: ${error}`);
+    },
+    onSuccess: (response, data, context) => {
+      // redirecionar para página...
+    },
+    onSettled: () => {
+      // Sempre vai rodar por último, independete de erro ou sucesso.
+    },
   });
 
   const handleAddButton = () => {
@@ -51,7 +63,8 @@ const Page = () => {
         Adicionar novo post
       </button>
 
-      <p>{addMutation.isPending && "Loading..."}</p>
+      {/* Existem vários métodos para status e reset de Mutation */}
+      <p>Status: {addMutation.status}</p>
 
       {posts.isLoading && "Loading..."}
 
