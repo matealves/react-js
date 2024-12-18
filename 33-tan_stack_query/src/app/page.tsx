@@ -50,6 +50,7 @@ const Page = () => {
       body: "lorem ipsum test one two three",
       userId: 7,
     });
+    // É possível utilizar effects como 2º param do mutate (onSuccess, onError...)
   };
 
   return (
