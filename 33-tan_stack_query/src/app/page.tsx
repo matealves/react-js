@@ -1,6 +1,8 @@
 "use client";
 
+import { addPost } from "@/utils/api";
 import { invalidatePosts, usePosts, useUsersPrefetch } from "@/utils/queries";
+import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 
 const Page = () => {
@@ -25,9 +27,29 @@ const Page = () => {
     invalidatePosts();
   };
 
+  // Mutation
+  const addMutation = useMutation({
+    mutationFn: addPost,
+  });
+
+  const handleAddButton = () => {
+    addMutation.mutate({
+      title: "Título teste",
+      body: "lorem ipsum test one two three",
+      userId: 7,
+    });
+  };
+
   return (
     <div className="container mx-auto my-8 flex flex-col gap-3 items-center text-sm">
       <h1 className="text-xl font-bold">Feed</h1>
+
+      <button
+        onClick={handleAddButton}
+        className="rounded-md border border-white p-3 my-3"
+      >
+        Adicionar novo post
+      </button>
 
       {posts.isLoading && "Loading..."}
 
