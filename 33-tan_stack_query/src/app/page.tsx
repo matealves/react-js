@@ -51,6 +51,8 @@ const Page = () => {
         Adicionar novo post
       </button>
 
+      <p>{addMutation.isPending && "Loading..."}</p>
+
       {posts.isLoading && "Loading..."}
 
       {posts.data && (
