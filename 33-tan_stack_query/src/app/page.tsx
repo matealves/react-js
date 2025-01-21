@@ -44,13 +44,24 @@ const Page = () => {
     },
   });
 
-  const handleAddButton = () => {
-    addMutation.mutate({
+  const handleAddButton = async () => {
+    const data = {
       title: "Título teste",
       body: "lorem ipsum test one two three",
       userId: 7,
-    });
+    };
+
+    // addMutation.mutate(data);
+
     // É possível utilizar effects como 2º param do mutate (onSuccess, onError...)
+    // E também utilizar mutate com await
+    await addMutation.mutateAsync(data, {
+      onSuccess: (response, data, context) => {
+        console.log("Deu tudo certo!");
+      },
+    });
+
+    console.log("Executou depois do mutate!");
   };
 
   return (
