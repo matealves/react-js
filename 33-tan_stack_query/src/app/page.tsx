@@ -2,6 +2,7 @@
 
 import { addPost } from "@/utils/api";
 import { invalidatePosts, usePosts, useUsersPrefetch } from "@/utils/queries";
+import { queryClient } from "@/utils/queryClient";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 
@@ -57,7 +58,10 @@ const Page = () => {
     // E também utilizar mutate com await
     await addMutation.mutateAsync(data, {
       onSuccess: (response, data, context) => {
-        console.log("Deu tudo certo!");
+        console.log("Post adicionado com sucesso!", data);
+        queryClient.invalidateQueries({
+          queryKey: ["posts"],
+        });
       },
     });
 
