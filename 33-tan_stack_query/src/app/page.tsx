@@ -1,5 +1,6 @@
 "use client";
 
+import { Post } from "@/types/Post";
 import { addPost } from "@/utils/api";
 import { invalidatePosts, usePosts, useUsersPrefetch } from "@/utils/queries";
 import { queryClient } from "@/utils/queryClient";
@@ -59,9 +60,14 @@ const Page = () => {
     await addMutation.mutateAsync(data, {
       onSuccess: (response, data, context) => {
         console.log("Post adicionado com sucesso!", data);
-        queryClient.invalidateQueries({
-          queryKey: ["posts"],
-        });
+        // Invalidando Query pelo Mutation
+        // queryClient.invalidateQueries({
+        //   queryKey: ["posts"],
+        // });
+
+        // Atualizando Query pelo Mutation
+        const posts = queryClient.getQueryData(["posts"]) as Post[];
+        queryClient.setQueryData(["posts"], [data, ...posts]);
       },
     });
 
